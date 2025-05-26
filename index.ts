@@ -1,8 +1,7 @@
-// 1. Basic example
+// 2. function
 
-let x = 0;
-x = '1';
-x = 2;
-let y: boolean;
-y = true;
-console.log(x + y);
+function stringsToUpperCase(str1: string, str2: string): string {
+    str2.concat(str1).toUppercase();
+}
+
+stringsToUpperCase('bar');
