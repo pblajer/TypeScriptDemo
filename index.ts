@@ -1,27 +1,28 @@
-// 7. exending module
+// 8. Omit
 
-//const Koa = require('koa');
-//const log4js = require('log4js');
-import Koa from 'koa';
-import * as log4js from 'log4js';
-
-log4js.configure({
-    appenders: { myConsoleAppender: { type: 'console' } },
-    categories: { default: { appenders: ['myConsoleAppender'], level: log4js.levels.DEBUG.levelStr }}
-});
-declare module 'koa' {
-    interface Context {
-        log: log4js.Logger;
-    }
+interface EncryptedPlatformKeys {
+    rawNoSignature: Buffer;
+    signature: Buffer;
+    header: object;
+    keySlotCount: number;
+    keyCount: number;
+    platformCertificateHash: Buffer;
+    encryptedWrappingKey: Buffer;
+    wrappedPlatformKeys: Buffer;
+    securityProperties: number;
 }
-const app = new Koa();
-app.use(async (ctx: Koa.Context, next: Koa.Next) => {
-    ctx.log = log4js.getLogger();
-    return next();
-});
-app.use(async function(ctx: Koa.Context) {
-    ctx.log.info('hello');
-    ctx.status = 200;
-    ctx.body = 'yay';
-});
-app.listen(8080);
+const partialEPK: Omit<EncryptedPlatformKeys, 'signature' | 'rawNoSignature'> = {
+    header: {},
+    keySlotCount: 1,
+    keyCount: 1,
+    platformCertificateHash: Buffer.from('abcdef', 'hex'),
+    encryptedWrappingKey: Buffer.from('abcdef', 'hex'),
+    wrappedPlatformKeys: Buffer.from('abcdef', 'hex'),
+    securityProperties: 0x83,
+};
+const epk: EncryptedPlatformKeys = {
+    ...partialEPK,
+    rawNoSignature: Buffer.from('abcdef', 'hex'),
+    signature: Buffer.from('abcdef', 'hex')
+};
+//more utility types: https://www.typescriptlang.org/docs/handbook/utility-types.html
