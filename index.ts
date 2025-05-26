@@ -1,34 +1,21 @@
-// 3. interfaces and classes
+// 4. Types
 interface Response {
     status: string;
-}
-interface Response {
     details?: string;
 }
-interface ResponseWithData<T extends object> extends Response {
-    readonly data: T;
+type Password = string;
+type Id = string | number;
+type ReadOnlyResponseWithHeaders = Readonly<Response & { headers: Map<string, string> }>;
+
+let id: Id;
+if (typeof id === 'string') {
+    id = id.toUpperCase();
 }
-class HttpResponse implements ResponseWithData<Buffer> {
-    details?: string;
-    protected httpCode: number = 200;
-    
-    constructor(
-        public status: string,
-        readonly data: Buffer
-    ) {
-    }
+else {
+    id *= 2;
 }
-abstract class DbResponse implements Response {
-    status: string;
-    details?: string;
+let ids: (string | number)[] = [1, 'bob', 3];
+function httpGet(url: URL) {
 }
-class DbResponseImpl extends DbResponse {
-    constructor() {
-        super();
-    }
+function httpGet(url: string) {
 }
-const httpResponse = new HttpResponse('ok', Buffer.from('abcdef', 'hex'));
-const reponse: Response = {
-    status: 'no ok',
-    details: 'very bad',
-};

@@ -29,6 +29,7 @@ stringsToUpperCase('bar');
 
 /*
 // 3. interfaces and classes
+
 interface Response {
     status: string;
 }
@@ -41,6 +42,7 @@ interface ResponseWithData<T extends object> extends Response {
 class HttpResponse implements ResponseWithData<Buffer> {
     details?: string = 'none';
     protected httpCode: number = 200;
+
     constructor(
         public status: string,
         readonly data: Buffer
@@ -61,11 +63,17 @@ const reponse: Response = {
     status: 'no ok',
     details: 'very bad',
 };
+
 /* end 3 */
 
 
 /*
 // 4. Types
+
+interface Response {
+    status: string;
+    details?: string;
+}
 type Password = string;
 type Id = string | number;
 type ReadOnlyResponseWithHeaders = Readonly<Response & { headers: Map<string, string> }>;
@@ -82,11 +90,13 @@ function httpGet(url: URL) {
 }
 function httpGet(url: string) {
 }
+
 /* end 4 */
 
 
 /*
 // 5. Enums
+
 enum UpdateType {
     Public,
     Early,
@@ -99,18 +109,22 @@ switch(updateType) {
     //default:
     //    const neverUpdateType: never = updateType;
 }
+
 /* end 5 */
 
 
 /*
 // 6. tuples
+
 function process(successfully: boolean): [boolean, string] {
     if (!successfully)
         return [false, 'failed'];
     return [true, 'processed'];
 }
 const [isSuccess, message] = process(true);
+
 /* end 6 */
+
 
 /*
 // 7. exending module
@@ -142,6 +156,7 @@ app.use(async function(ctx: Koa.Context) {
 app.listen(8080);
 
 /* end 7 */
+
 
 /*
 // 8. Omit
@@ -188,8 +203,10 @@ const nrHolder = objectCreator(NumberHolder);
 console.log(nrHolder.nr);
 /* end 9 */
 
+
 /*
 // 10. using/dispose
+
 class Reader implements Disposable {
     constructor() {
         console.log('get some external resource');
@@ -208,8 +225,10 @@ reader.func();
 //btw async possible too
 /* end 10 */
 
+
 /*
 // 11. Namespace
+
 namespace MyNamespace {
     export function func() {
     }
@@ -221,11 +240,15 @@ namespace MyOtherNamespace {
 }
 MyNamespace.func();
 MyOtherNamespace.func();
+
 /* end 11 */
+
 
 /*
 // 12. JS Interop
+
 const other = require('./helloWorld');
 
 other();
+
 /* end 12 */
