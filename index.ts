@@ -1,21 +1,14 @@
-// 4. Types
-interface Response {
-    status: string;
-    details?: string;
-}
-type Password = string;
-type Id = string | number;
-type ReadOnlyResponseWithHeaders = Readonly<Response & { headers: Map<string, string> }>;
+// 5. Enums
 
-let id: Id;
-if (typeof id === 'string') {
-    id = id.toUpperCase();
+enum UpdateType {
+    Public,
+    Early,
+    EarlyAccess
 }
-else {
-    id *= 2;
-}
-let ids: (string | number)[] = [1, 'bob', 3];
-function httpGet(url: URL) {
-}
-function httpGet(url: string) {
+
+let updateType: UpdateType
+switch(updateType) {
+    case
+    //default:
+    //    const neverUpdateType: never = updateType;
 }
