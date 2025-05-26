@@ -1,28 +1,10 @@
-// 8. Omit
+// 9. constructor function parameter
 
-interface EncryptedPlatformKeys {
-    rawNoSignature: Buffer;
-    signature: Buffer;
-    header: object;
-    keySlotCount: number;
-    keyCount: number;
-    platformCertificateHash: Buffer;
-    encryptedWrappingKey: Buffer;
-    wrappedPlatformKeys: Buffer;
-    securityProperties: number;
+class NumberHolder {
+    constructor(public nr: number) {}
 }
-const partialEPK: Omit<EncryptedPlatformKeys, 'signature' | 'rawNoSignature'> = {
-    header: {},
-    keySlotCount: 1,
-    keyCount: 1,
-    platformCertificateHash: Buffer.from('abcdef', 'hex'),
-    encryptedWrappingKey: Buffer.from('abcdef', 'hex'),
-    wrappedPlatformKeys: Buffer.from('abcdef', 'hex'),
-    securityProperties: 0x83,
-};
-const epk: EncryptedPlatformKeys = {
-    ...partialEPK,
-    rawNoSignature: Buffer.from('abcdef', 'hex'),
-    signature: Buffer.from('abcdef', 'hex')
-};
-//more utility types: https://www.typescriptlang.org/docs/handbook/utility-types.html
+function objectCreator<T>(factory: new (param: number) => T): T {
+    return new factory(1);
+}
+const nrHolder = objectCreator(NumberHolder);
+console.log(nrHolder.nr);
