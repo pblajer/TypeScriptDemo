@@ -1,10 +1,18 @@
-// 9. constructor function parameter
+// 10. using/dispose
 
-class NumberHolder {
-    constructor(public nr: number) {}
+class Reader implements Disposable {
+    constructor() {
+        console.log('get some external resource');
+    }
+
+    func(): void {
+        console.log('do sth with external resource');
+    }
+
+    [Symbol.dispose](): void {
+        console.log('release external resource');
+    }
 }
-function objectCreator<T>(factory: new (param: number) => T): T {
-    return new factory(1);
-}
-const nrHolder = objectCreator(NumberHolder);
-console.log(nrHolder.nr);
+using reader = new Reader();
+reader.func();
+//btw async possible too
