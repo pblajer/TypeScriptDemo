@@ -1,14 +1,8 @@
-// 5. Enums
+// 6. tuples
 
-enum UpdateType {
-    Public,
-    Early,
-    EarlyAccess
+function process(successfully: boolean): [boolean, string] {
+    if (!successfully)
+        return [false, 'failed'];
+    return [true, 'processed'];
 }
-
-let updateType: UpdateType
-switch(updateType) {
-    case
-    //default:
-    //    const neverUpdateType: never = updateType;
-}
+const [isSuccess, message] = process(true);
