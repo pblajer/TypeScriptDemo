@@ -1,12 +1,5 @@
-// 11. Namespace
+// 12. JS Interop
 
-namespace MyNamespace {
-    export function func() {
-    }
-}
-namespace MyOtherNamespace {
-    export function func() {
-    }
-}
-MyNamespace.func();
-MyOtherNamespace.func();
+const other = require('./helloWorld');
+
+other();
