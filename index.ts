@@ -1,18 +1,12 @@
-// 10. using/dispose
+// 11. Namespace
 
-class Reader implements Disposable {
-    constructor() {
-        console.log('get some external resource');
-    }
-
-    func(): void {
-        console.log('do sth with external resource');
-    }
-
-    [Symbol.dispose](): void {
-        console.log('release external resource');
+namespace MyNamespace {
+    export function func() {
     }
 }
-using reader = new Reader();
-reader.func();
-//btw async possible too
+namespace MyOtherNamespace {
+    export function func() {
+    }
+}
+MyNamespace.func();
+MyOtherNamespace.func();

@@ -235,7 +235,6 @@ namespace MyNamespace {
 }
 namespace MyOtherNamespace {
     export function func() {
-
     }
 }
 MyNamespace.func();
